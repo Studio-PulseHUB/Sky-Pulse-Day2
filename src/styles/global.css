@@ -845,3 +845,101 @@ body::after {
   height: 100%;
   display: block;
 }
+
+/* =========================
+   OBSモード
+========================= */
+
+.obs-page {
+  width: 100vw; 
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: transparent;
+}
+
+.obs-card {
+  width: 320px;
+
+  padding: 18px 22px;
+
+  border-radius: 18px;
+
+  background: rgba(20, 25, 35, 0.45);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  color: white;
+}
+
+.obs-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 16px;
+}
+
+.obs-icon {
+  font-size: 28px;
+}
+
+.obs-title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.obs-countdown {
+  font-size: 42px;
+  font-weight: bold;
+  text-align: center;
+
+  margin-bottom: 18px;
+}
+
+.obs-progress {
+  width: 100%;
+  height: 10px;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+
+  background: rgba(255,255,255,0.15);
+}
+
+.obs-progress-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  transition: width .8s linear;
+}
+
+.obs-home{
+    max-width:900px;
+    margin:40px auto;
+    padding:24px;
+}
+
+.obs-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:16px;
+    padding:18px;
+
+    border-radius:14px;
+
+    background:#1c1f29;
+}
+
+.obs-item button{
+    margin-left:12px;
+    cursor:pointer;
+}
