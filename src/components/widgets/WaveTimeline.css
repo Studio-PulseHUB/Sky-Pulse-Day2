@@ -1,0 +1,41 @@
+.wave-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  padding: 12px 0 8px;
+}
+
+.wave-header {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.wave-timeline svg {
+  width: 100%;
+  max-width: 900px;
+  overflow: visible;
+}
+
+.wave-next {
+  margin-top: 16px;
+
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,.72);
+
+  letter-spacing: .03em;
+}
+
+.wave-timeline text {
+  transition: .3s;
+  user-select: none;
+}
+
+.wave-timeline line {
+  transition: .3s;
+}

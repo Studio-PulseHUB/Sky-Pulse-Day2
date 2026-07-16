@@ -1,0 +1,71 @@
+.fireworks-widget{
+  width:100%;
+}
+
+.special-meta{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:6px;
+  margin-bottom:18px;
+}
+
+.special-meta span{
+  color:#8b949e;
+  font-size:14px;
+}
+
+.special-meta strong{
+  font-size:28px;
+  line-height:1;
+}
+
+.special-meta span{
+  color:#8b949e;
+  font-size:14px;
+}
+
+.special-meta strong{
+  font-size:28px;
+}
+
+.fireworks-grid{
+  display:grid;
+  grid-template-columns:repeat(7,14px);
+  gap:10px;
+  justify-content:center;
+  padding:14px 0;
+}
+
+.firework-dot{
+  display:block;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+}
+
+.firework-dot-past{
+  background:#ffd166;
+  box-shadow:0 0 10px rgba(255,209,102,.45);
+}
+
+.firework-dot-today{
+  background:#fff3b0;
+  box-shadow:0 0 18px rgba(255,243,176,.9);
+  animation:fireworkPulse 1.8s ease-in-out infinite;
+}
+
+.firework-dot-future{
+  background:#2d333b;
+}
+
+@keyframes fireworkPulse{
+  0%,100%{
+    transform:scale(1);
+    opacity:1;
+  }
+  50%{
+    transform:scale(1.45);
+    opacity:.75;
+  }
+}
