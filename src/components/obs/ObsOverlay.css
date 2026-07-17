@@ -1,0 +1,121 @@
+body.obs-mode,
+body.obs-mode #root {
+  margin: 0;
+  min-width: 0;
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  background: transparent !important;
+  background-image: none !important;
+}
+
+.obs-page {
+  box-sizing: border-box;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  padding: 18px;
+
+  overflow: hidden;
+
+  background: transparent;
+}
+
+.obs-overlay {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 360px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 0;
+
+  background: transparent;
+  box-shadow: none;
+
+  color: #ffffff;
+}
+
+.obs-overlay.compact {
+  width: 300px;
+}
+
+.obs-overlay-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 0;
+}
+
+.obs-overlay-icon {
+  flex: 0 0 auto;
+
+  font-size: 28px;
+  line-height: 1;
+}
+
+.obs-overlay-title {
+  overflow: hidden;
+
+  font-size: 24px;
+  font-weight: 750;
+  line-height: 1.2;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.9),
+    0 0 12px rgba(0, 0, 0, 0.65);
+}
+
+.obs-overlay-countdown {
+  font-variant-numeric: tabular-nums;
+
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1;
+
+  letter-spacing: 0.03em;
+
+  text-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.95),
+    0 0 14px rgba(0, 0, 0, 0.7);
+}
+
+.obs-overlay.compact .obs-overlay-countdown {
+  font-size: 42px;
+}
+
+.obs-overlay-progress {
+  width: 100%;
+  height: 10px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.22);
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.obs-overlay-progress-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  transition: width 0.8s linear;
+}

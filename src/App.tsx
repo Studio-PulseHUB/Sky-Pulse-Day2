@@ -1,19 +1,24 @@
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
-import GeyserPage from "./pages/obs/GeyserPage";
+import ObsPage from "./pages/obs/ObsPage";
 import { ThemeProvider } from "./themes/ThemeProvider";
-import ObsHome from "./pages/obs/ObsHome";
-
-import "./styles/global.css";
 
 export default function App() {
   return (
     <ThemeProvider>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/obs/geyser" element={<GeyserPage />} />
-        <Route path="/obs" element={<ObsHome />} />
+
+        <Route
+          path="/obs/:overlayId"
+          element={<ObsPage />}
+        />
+
+        <Route
+          path="/obs/:overlayId/compact"
+          element={<ObsPage />}
+        />
       </Routes>
     </ThemeProvider>
   );

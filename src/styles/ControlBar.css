@@ -1,125 +1,313 @@
-.control-bar{
-    position:fixed;
+.control-bar {
+  position: fixed;
+  top: 50%;
+  left: 24px;
+  transform: translateY(-50%);
 
-    top:50%;
-    left:24px;
+  width: 72px;
+  padding: 20px 0;
 
-    transform:translateY(-50%);
+  border-radius: 999px;
+  background: #1b212d;
 
-    width:72px;
-    padding:20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
 
-    border-radius:999px;
-
-    background:#1b212d;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:18px;
-
-    z-index:100;
+  z-index: 100;
 }
 
-.control-logo{
-    font-size:24px;
-    margin-bottom:8px;
+.control-logo {
+  font-size: 24px;
+  margin-bottom: 8px;
 }
 
-.control-icon{
-    width:48px;
-    height:48px;
+.control-icon {
+  width: 48px;
+  height: 48px;
 
-    border:none;
-    border-radius:50%;
+  border: none;
+  border-radius: 50%;
 
-    background:transparent;
+  background: transparent;
+  color: white;
 
-    color:white;
-    font-size:22px;
+  font-size: 22px;
+  cursor: pointer;
 
-    cursor:pointer;
-
-    transition:.25s;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
 }
 
-.control-icon:hover{
-    background:rgba(255,255,255,.08);
+.control-icon:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.05);
 }
 
-.side-menu{
-
-    position:fixed;
-
-    top:50%;
-    left:110px;
-
-    transform:translateY(-50%) scale(.95);
-
-    width:0;
-
-    opacity:0;
-
-    overflow:hidden;
-
-    padding:0;
-
-    border-radius:24px;
-
-    background:#1b212d;
-
-    transition:
-        width .28s ease,
-        opacity .25s ease,
-        transform .28s ease,
-        padding .28s ease;
-
-    z-index:99;
+.control-icon.active {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
 }
 
-.side-menu.open{
+.side-menu {
+  position: fixed;
+  top: 50%;
+  left: 110px;
 
-    width:240px;
+  transform: translateY(-50%) scale(0.95);
 
-    padding:24px;
+  width: 0;
+  max-height: calc(100vh - 80px);
 
-    opacity:1;
+  opacity: 0;
+  overflow: hidden;
 
-    transform:translateY(-50%) scale(1);
+  padding: 0;
+  border-radius: 24px;
+
+  background: #1b212d;
+
+  transition:
+    width 0.28s ease,
+    opacity 0.25s ease,
+    transform 0.28s ease,
+    padding 0.28s ease;
+
+  z-index: 99;
 }
 
-.side-menu h3{
-    margin-bottom:18px;
+.side-menu.open {
+  width: 240px;
+  padding: 24px;
+
+  opacity: 1;
+  overflow-y: auto;
+
+  transform: translateY(-50%) scale(1);
 }
 
-.side-menu button{
-
-    width:100%;
-
-    margin-bottom:10px;
-
-    padding:12px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#242b39;
-
-    color:white;
-
-    cursor:pointer;
-
-    text-align:left;
-
-    transition:.2s;
+.side-menu.obs-open {
+  width: min(680px, calc(100vw - 170px));
 }
 
-.side-menu button:hover{
-    background:#30384b;
+.side-menu h3 {
+  margin: 0 0 18px;
 }
 
-.side-menu button.active {
+.side-menu > button {
+  width: 100%;
+
+  margin-bottom: 10px;
+  padding: 12px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #242b39;
+  color: white;
+
+  cursor: pointer;
+  text-align: left;
+
+  transition: background 0.2s ease;
+}
+
+.side-menu > button:hover {
+  background: #30384b;
+}
+
+.side-menu > button.active {
   background: rgba(255, 255, 255, 0.16);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.obs-menu-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.obs-menu-header h3 {
+  margin: 4px 0 0;
+  font-size: 28px;
+}
+
+.obs-menu-label {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.obs-close-button {
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+
+  font-size: 22px;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.obs-close-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: rotate(5deg);
+}
+
+.obs-menu-description {
+  margin: 10px 0 22px;
+
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.7;
+}
+
+.obs-menu-list {
+  display: grid;
+  gap: 12px;
+}
+
+.obs-menu-item {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+
+  padding: 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+
+  background: #242b39;
+}
+
+.obs-menu-item-name {
+  color: white;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.obs-menu-actions {
+  display: grid;
+  grid-template-columns: 110px 110px;
+  gap: 10px;
+}
+
+.obs-copy-button {
+  position: relative;
+
+  min-height: 44px;
+  padding: 0 14px;
+
+  overflow: hidden;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #30384b;
+  color: white;
+
+  font: inherit;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.obs-copy-button:hover {
+  background: #3a445a;
+  transform: translateY(-1px);
+}
+
+.obs-copy-button:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.obs-copy-label,
+.obs-copy-check {
+  position: absolute;
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.28s ease;
+}
+
+.obs-copy-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.obs-copy-check {
+  opacity: 0;
+  transform: translateY(8px) scale(0.75);
+
+  font-size: 22px;
+}
+
+.obs-copy-button.copied {
+  background: rgba(115, 225, 190, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(115, 225, 190, 0.28);
+}
+
+.obs-copy-button.copied .obs-copy-label {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.obs-copy-button.copied .obs-copy-check {
+  animation: obs-check-float 0.9s ease both;
+}
+
+@keyframes obs-check-float {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.65);
+  }
+
+  25% {
+    opacity: 1;
+    transform: translateY(0) scale(1.08);
+  }
+
+  65% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.9);
+  }
+}
+
+@media (max-width: 760px) {
+  .control-bar {
+    display: none;
+  }
+
+  .side-menu {
+    display: none;
+  }
 }
