@@ -939,3 +939,7 @@ body::after {
     margin-left:12px;
     cursor:pointer;
 }
+
+.special-title {
+    white-space: nowrap;
+}

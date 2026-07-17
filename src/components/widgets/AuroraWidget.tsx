@@ -70,7 +70,7 @@ export default function AuroraWidget() {
   return (
     <div className="aurora-widget special-event-card">
       <div className="special-event-info">
-        <h2 className="special-title">✨ AURORA帰還コンサート</h2>
+        <h2 className="special-title">✨ AURORAコンサート</h2>
 
         <div className="special-badge">
           {isLive ? "✦ LIVE NOW" : "✦ LIVE SHOW"}
