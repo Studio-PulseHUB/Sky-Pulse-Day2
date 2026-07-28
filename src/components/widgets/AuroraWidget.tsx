@@ -70,16 +70,30 @@ export default function AuroraWidget() {
   return (
     <div className="aurora-widget special-event-card">
       <div className="special-event-info">
-        <h2 className="special-title">✨ AURORAコンサート</h2>
+     
+      <h2 className="special-title">
+  <span className="desktop-title">
+        ✨ AURORAコンサート
+  </span>
+
+  <span className="mobile-title">
+  AURORA
+  </span>
+</h2>
 
         <div className="special-badge">
           {isLive ? "✦ LIVE NOW" : "✦ LIVE SHOW"}
         </div>
 
-        <div className="special-meta">
-          <span>{isLive ? "開催中" : "次回開催"}</span>
-          <strong>{isLive ? "終了まで" : formatTime(next)}</strong>
-        </div>
+<div className="special-meta">
+  <span>
+    {isLive ? "✦ 開催中" : "次回"}
+  </span>
+
+  {!isLive && (
+    <strong>{formatTime(next)}</strong>
+  )}
+</div>
 
         <div className="special-countdown">
           {countdown}

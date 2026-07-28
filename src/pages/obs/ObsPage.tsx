@@ -3,6 +3,8 @@ import { useLocation, useParams } from "react-router-dom";
 
 import ObsOverlay from "../../components/obs/ObsOverlay";
 import { events } from "../../data/events";
+import NowOverlay from "../../components/obs/NowOverlay";
+import "../../styles/obs.css";
 
 import {
   getNextEventTime,
@@ -235,37 +237,41 @@ function ObsNotFound() {
 }
 
 export default function ObsPage() {
-  const { overlayId } = useParams();
-  const location = useLocation();
+const { overlayId } = useParams();
+const location = useLocation();
 
-  const compact =
-    location.pathname.endsWith("/compact");
+const compact =
+  location.pathname.endsWith("/compact");
 
-  if (!overlayId) {
-    return <ObsNotFound />;
-  }
-
-  if (
-    overlayId === "geyser" ||
-    overlayId === "bread" ||
-    overlayId === "turtle" ||
-    overlayId === "fireworks"
-  ) {
-    return (
-      <TimedEventOverlay
-        eventId={overlayId}
-        compact={compact}
-      />
-    );
-  }
-
-  if (overlayId === "aurora") {
-    return <AuroraOverlay compact={compact} />;
-  }
-
-  if (overlayId === "environment") {
-    return <EnvironmentOverlay compact={compact} />;
-  }
-
+if (!overlayId) {
   return <ObsNotFound />;
+}
+
+if (overlayId === "now") {
+  return <NowOverlay compact={compact} />;
+}
+
+if (
+  overlayId === "geyser" ||
+  overlayId === "bread" ||
+  overlayId === "turtle" ||
+  overlayId === "fireworks"
+) {
+  return (
+    <TimedEventOverlay
+      eventId={overlayId}
+      compact={compact}
+    />
+  );
+}
+
+if (overlayId === "aurora") {
+  return <AuroraOverlay compact={compact} />;
+}
+
+if (overlayId === "environment") {
+  return <EnvironmentOverlay compact={compact} />;
+}
+
+return <ObsNotFound />;
 }

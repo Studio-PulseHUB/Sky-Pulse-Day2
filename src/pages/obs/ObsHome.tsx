@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const pages = [
+  { name: "⭐ Now", path: "/obs/now" },
   { name: "🌋 間欠泉", path: "/obs/geyser" },
   { name: "🍞 パン焼き", path: "/obs/bread" },
   { name: "🐢 ウミガメ", path: "/obs/turtle" },
@@ -10,14 +11,14 @@ const pages = [
 ];
 
 export default function ObsHome() {
-  const copy = async (url: string) => {
-    await navigator.clipboard.writeText(
-      window.location.origin + url
-    );
+const copy = async (url: string) => {
+  const obsUrl =
+    `${window.location.origin}${import.meta.env.BASE_URL}#${url}`;
 
-    alert("URLをコピーしました！");
-  };
+  await navigator.clipboard.writeText(obsUrl);
 
+  alert("URLをコピーしました!");
+};
   return (
     <div className="obs-home">
       <h1>OBS Overlay</h1>

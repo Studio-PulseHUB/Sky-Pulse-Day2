@@ -7,6 +7,8 @@ import AuroraWidget from "../components/widgets/AuroraWidget";
 import EnvironmentWidget from "../components/widgets/EnvironmentWidget";
 import ControlBar from "../layouts/ControlBar";
 import Logo from "../components/ui/Logo";
+import { getTimeTheme } from "../utils/theme";
+import { useTheme } from "../themes/ThemeProvider";
 
 import { events } from "../data/events";
 
@@ -20,12 +22,19 @@ export default function Home() {
 
     return () => clearInterval(timer);
   }, []);
+const { theme } = useTheme();
+const timeTheme = getTimeTheme(now);
 
+const backgroundClass =
+  theme === "auto"
+    ? `time-${timeTheme}`
+    : "";
   return (
     <>
       <ControlBar />
 
-      <main className="home">
+<main className={`home ${backgroundClass}`}>
+
         <Logo />
 
         <NowCard events={events} now={now} />
@@ -36,17 +45,32 @@ export default function Home() {
           {events
             .filter((event) => event.type !== "fireworks")
             .map((event) => (
-              <EventCard key={event.id} event={event} now={now} />
+              <EventCard
+                key={event.id}
+                event={event}
+                now={now}
+              />
             ))}
+
+          {/* スマホではカメの横に表示 */}
+          <div className="mobile-aurora">
+            <AuroraWidget />
+          </div>
         </div>
 
         <div className="special-events-grid">
           <FireworksWidget />
-          <AuroraWidget />
+
+          {/* PCでは花火の横に表示 */}
+          <div className="desktop-aurora">
+            <AuroraWidget />
+          </div>
         </div>
 
         <EnvironmentWidget />
+        
       </main>
     </>
   );
 }
+

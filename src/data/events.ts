@@ -3,6 +3,7 @@ export type EventType = "geyser" | "bread" | "turtle" | "fireworks";
 export type SkyEvent = {
   id: string;
   title: string;
+    shortTitle: string;
   type: EventType;
   icon: string;
   color: string;
@@ -18,6 +19,7 @@ export const events: SkyEvent[] = [
   {
     id: "geyser",
     title: "ウニ間欠泉",
+    shortTitle: "間欠泉",
     type: "geyser",
     icon: "🌋",
     color: "#42d9ff",
@@ -29,6 +31,7 @@ export const events: SkyEvent[] = [
   {
     id: "bread",
     title: "パン焼き",
+    shortTitle: "パン",
     type: "bread",
     icon: "🍞",
     color: "#ffb86b",
@@ -40,6 +43,7 @@ export const events: SkyEvent[] = [
   {
     id: "turtle",
     title: "ウミガメ",
+    shortTitle: "カメ",
     type: "turtle",
     icon: "🐢",
     color: "#76f7b2",
@@ -51,6 +55,7 @@ export const events: SkyEvent[] = [
   {
     id: "fireworks",
     title: "花鳥郷花火ショー",
+    shortTitle: "花火",
     type: "fireworks",
     icon: "🎆",
     color: "#ff6ad5",

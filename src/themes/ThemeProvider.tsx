@@ -21,7 +21,7 @@ export function ThemeProvider({
   children: ReactNode;
 }) {
   const [theme, setTheme] =
-    useState<ThemeName>("night");
+    useState<ThemeName>("auto");
 
   useEffect(() => {
     document.documentElement.setAttribute(

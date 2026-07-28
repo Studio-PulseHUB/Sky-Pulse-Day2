@@ -18,8 +18,14 @@ export default function FireworksWidget() {
   return (
     <div className="fireworks-widget special-event-card">
       <div className="special-event-info">
-        <h2 className="special-title">
-  🎆 花鳥郷花火ショー
+<h2 className="special-title">
+  <span className="desktop-title">
+    🎆 花鳥郷花火ショー
+  </span>
+
+  <span className="mobile-title">
+    🎆 花火
+  </span>
 </h2>
 
         <div className="special-meta">

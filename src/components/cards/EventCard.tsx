@@ -2,7 +2,6 @@ import type { SkyEvent } from "../../data/events";
 import {
   getEventProgress,
   getNextEventTime,
-  isEventActive,
 } from "../../utils/schedule";
 import {
   formatCountdown,
@@ -18,7 +17,6 @@ export default function EventCard({
   event,
   now,
 }: EventCardProps) {
-  const active = isEventActive(event, now);
   const nextTime = getNextEventTime(event, now);
   const diff = nextTime.getTime() - now.getTime();
   const progress = getEventProgress(event, now);
@@ -36,7 +34,13 @@ export default function EventCard({
             {event.icon}
           </span>
 
-          <span>{event.title}</span>
+          <span className="desktop-title">
+            {event.title}
+          </span>
+
+          <span className="mobile-title">
+            {event.shortTitle}
+          </span>
         </h2>
 
         <span className="event-type">
@@ -45,10 +49,16 @@ export default function EventCard({
       </div>
 
       <div className="event-info">
-        <div>
-          <p className="label">次回開催</p>
+        <div className="next-time-block">
+          <p className="label desktop-only">
+            次回開催
+          </p>
 
           <p className="event-time">
+            <span className="mobile-only">
+              次回{" "}
+            </span>
+
             {formatTime(nextTime)}
           </p>
         </div>
@@ -59,9 +69,7 @@ export default function EventCard({
           </p>
 
           <p className="countdown">
-            {active
-              ? "開催中"
-              : formatCountdown(diff)}
+            {formatCountdown(diff)}
           </p>
         </div>
       </div>
@@ -76,5 +84,7 @@ export default function EventCard({
         />
       </div>
     </div>
+    
   );
+  
 }

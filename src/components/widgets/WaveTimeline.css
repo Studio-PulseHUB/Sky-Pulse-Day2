@@ -39,3 +39,25 @@
 .wave-timeline line {
   transition: .3s;
 }
+
+@media (max-width: 768px) {
+  .wave-timeline {
+    padding: 2px 0 4px;
+  }
+
+  .wave-timeline svg {
+    height: 110px;
+    max-width: none;
+  }
+
+  .wave-next {
+    margin-top: 4px;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .wave-timeline text {
+    font-size: 24px;
+  }
+}

@@ -6,6 +6,11 @@ type MenuName = "theme" | "language" | "obs" | null;
 type CopyTarget = string | null;
 
 const obsItems = [
+    {
+    name: "Now",
+    full: "/obs/now",
+    compact: "/obs/now/compact",
+  },
   {
     name: "間欠泉",
     full: "/obs/geyser",
@@ -123,6 +128,14 @@ export default function ControlBar() {
             >
               Starry
             </button>
+
+            <button
+              className={theme === "auto" ? "active" : ""}
+              type="button"
+              onClick={() => setTheme("auto")}
+            >
+              Auto
+            </button> 
           </>
         )}
 

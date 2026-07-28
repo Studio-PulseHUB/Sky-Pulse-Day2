@@ -57,8 +57,8 @@ export default function WaveTimeline() {
     <div className="wave-timeline">
       <svg
         width="100%"
-        height="190"
-        viewBox="0 0 1000 190"
+        height="130"
+        viewBox="0 0 1000 150"
         preserveAspectRatio="xMidYMid meet"
       >
         {phases.map((phase) => {
@@ -84,9 +84,10 @@ export default function WaveTimeline() {
             <text
               key={phase.label + "-text"}
               x={x}
-              y={24}
+              y1={38}
+              y2={100}
               textAnchor="middle"
-              fontSize="16"
+              fontSize="24"
               fontWeight="700"
               fill={
                 currentPhase.label === phase.label
@@ -111,7 +112,7 @@ export default function WaveTimeline() {
         <circle
           cx={dot.x}
           cy={dot.y}
-          r="8"
+          r="12"
           fill="#FFD66B"
           filter="drop-shadow(0 0 10px #FFD66B)"
         />

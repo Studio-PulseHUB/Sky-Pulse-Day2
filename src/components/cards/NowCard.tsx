@@ -1,44 +1,74 @@
 import type { SkyEvent } from "../../data/events";
-import { getNextEventTime, isEventActive } from "../../utils/schedule";
+import {
+  getNextEventTime,
+  getPreviousEventTime,
+  isEventActive,
+} from "../../utils/schedule";
 import { formatCountdown } from "../../utils/time";
 
 type NowCardProps = {
   events: SkyEvent[];
   now: Date;
+  compact?: boolean;
+  obs?: boolean;
 };
 
-export default function NowCard({ events, now }: NowCardProps) {
-  const activeEvent = events.find((event) =>
+
+export default function NowCard({
+  events,
+  now,
+  compact = false,
+  obs = false,
+}: NowCardProps) {
+  const normalEvents = events.filter(
+    (event) =>
+      event.type === "geyser" ||
+      event.type === "bread" ||
+      event.type === "turtle"
+  );
+
+  const activeEvent = normalEvents.find((event) =>
     isEventActive(event, now)
   );
 
   if (activeEvent) {
+    const startTime = getPreviousEventTime(
+      activeEvent,
+      now
+    );
 
-    const nextTime = getNextEventTime(activeEvent, now);
-    const diff = nextTime.getTime() - now.getTime();
+    const endTime = new Date(
+      startTime.getTime() +
+        activeEvent.durationMinutes * 60 * 1000
+    );
+
+    const remaining =
+      endTime.getTime() - now.getTime();
 
     return (
-      <div className="now-card">
-        <p className="now-title">NOW</p>
+<div
+  className={
+    obs
+      ? `obs-now-overlay ${
+          compact ? "compact" : ""
+        }`
+      : "now-card"
+  }
+>
+        <p className="now-title">開催中！</p>
 
-<h2>
-  {activeEvent.icon} {activeEvent.title}
-</h2>
+        <h2>
+          {activeEvent.icon} {activeEvent.title}
+        </h2>
 
         <p className="now-time">
-          {formatCountdown(diff)}
+          {formatCountdown(remaining)}
         </p>
       </div>
     );
   }
 
-  const nextEvent = [...events]
-    .filter(
-      (event) =>
-        event.type === "geyser" ||
-        event.type === "bread" ||
-        event.type === "turtle"
-    )
+  const nextEvent = normalEvents
     .map((event) => ({
       event,
       time: getNextEventTime(event, now),
@@ -55,9 +85,12 @@ export default function NowCard({ events, now }: NowCardProps) {
   return (
     <div className="now-card">
       <p className="now-title">NEXT</p>
-<h2>
-  {nextEvent.event.icon} {nextEvent.event.title}
-</h2>
+
+      <h2>
+        {nextEvent.event.icon}{" "}
+        {nextEvent.event.title}
+      </h2>
+
       <p className="now-time">
         {formatCountdown(
           nextEvent.time.getTime() - now.getTime()
