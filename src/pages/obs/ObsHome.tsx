@@ -11,14 +11,15 @@ const pages = [
 ];
 
 export default function ObsHome() {
-const copy = async (url: string) => {
-  const obsUrl =
-    `${window.location.origin}${import.meta.env.BASE_URL}#${url}`;
+const copyUrl = async (path: string) => {
+  const obsUrl = `${window.location.origin}${import.meta.env.BASE_URL}#${path}`;
+
+  console.log("COPY URL:", obsUrl);
 
   await navigator.clipboard.writeText(obsUrl);
-
-  alert("URLをコピーしました!");
+  alert(`コピーしました\n${obsUrl}`);
 };
+
   return (
     <div className="obs-home">
       <h1>OBS Overlay</h1>
@@ -32,11 +33,9 @@ const copy = async (url: string) => {
               Preview
             </Link>
 
-            <button
-              onClick={() => copy(page.path)}
-            >
-              Copy URL
-            </button>
+<button onClick={() => copyUrl(page.path)}>
+  Copy
+</button>
           </div>
         </div>
       ))}

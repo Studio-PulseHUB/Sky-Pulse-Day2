@@ -48,20 +48,23 @@ export default function ControlBar() {
   const [copied, setCopied] = useState<CopyTarget>(null);
   const { theme, setTheme } = useTheme();
 
-  const copyUrl = async (path: string) => {
-    const url = `${window.location.origin}${path}`;
+const copyUrl = async (path: string) => {
+  const url =
+    `${window.location.origin}${import.meta.env.BASE_URL}#${path}`;
 
-    try {
-      await navigator.clipboard.writeText(url);
-      setCopied(path);
+  try {
+    await navigator.clipboard.writeText(url);
+    setCopied(path);
 
-      window.setTimeout(() => {
-        setCopied((current) => (current === path ? null : current));
-      }, 900);
-    } catch {
-      console.error("URLのコピーに失敗しました");
-    }
-  };
+    window.setTimeout(() => {
+      setCopied((current) =>
+        current === path ? null : current
+      );
+    }, 900);
+  } catch {
+    console.error("URLのコピーに失敗しました");
+  }
+};
 
   return (
     <>
