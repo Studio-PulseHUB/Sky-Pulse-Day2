@@ -3,10 +3,10 @@ import type { SkyEvent } from "../data/events";
 function isSummerTime(now: Date): boolean {
   const year = now.getFullYear();
 
-  const start = new Date(year, 2, 8, 19, 0, 0, 0);
+  const previous = new Date(year, 2, 8, 19, 0, 0, 0);
   const end = new Date(year, 10, 1, 18, 0, 0, 0);
 
-  return now >= start && now < end;
+  return now >= previous && now <= end;
 }
 
 function getBaseHour(now: Date): number {
@@ -42,48 +42,88 @@ function getNextFireworksTime(now: Date): Date {
   return candidate;
 }
 
-export function getPreviousEventTime(event: SkyEvent, now: Date): Date {
+export function getPreviousEventTime(
+  event: SkyEvent,
+  now: Date
+): Date {
   const previous = new Date(now);
 
-  previous.setHours(getBaseHour(now), event.startMinute, 0, 0);
+  previous.setHours(
+    getBaseHour(now),
+    event.startMinute,
+    0,
+    0
+  );
 
   while (previous > now) {
-    previous.setMinutes(previous.getMinutes() - event.intervalMinutes);
+    previous.setMinutes(
+      previous.getMinutes() - event.intervalMinutes
+    );
   }
 
   return previous;
 }
 
-export function getNextEventTime(event: SkyEvent, now: Date): Date {
+export function getNextEventTime(
+  event: SkyEvent,
+  now: Date
+): Date {
   if (event.type === "fireworks") {
     return getNextFireworksTime(now);
   }
 
-  const next = new Date(now);
-  next.setHours(getBaseHour(now), event.startMinute, 0, 0);
+  const previous = getPreviousEventTime(event, now);
+  const next = new Date(previous);
 
-  while (next <= now) {
-    next.setMinutes(next.getMinutes() + event.intervalMinutes);
-  }
+  next.setMinutes(
+    next.getMinutes() + event.intervalMinutes
+  );
 
   return next;
 }
 
-export function getEventProgress(event: SkyEvent, now: Date): number {
+export function getEventProgress(
+  event: SkyEvent,
+  now: Date
+): number {
   const previous = getPreviousEventTime(event, now);
   const next = getNextEventTime(event, now);
 
-  const total = next.getTime() - previous.getTime();
-  const elapsed = now.getTime() - previous.getTime();
+  const total =
+    next.getTime() - previous.getTime();
 
-  return Math.min(100, Math.max(0, (elapsed / total) * 100));
+  const elapsed =
+    now.getTime() - previous.getTime();
+
+  return Math.min(
+    100,
+    Math.max(0, (elapsed / total) * 100)
+  );
 }
-
-export function isEventActive(event: SkyEvent, now: Date): boolean {
+export function isEventActive(
+  event: SkyEvent,
+  now: Date
+): boolean {
   const previous = getPreviousEventTime(event, now);
   const end = new Date(previous);
 
-  end.setMinutes(end.getMinutes() + event.durationMinutes);
+  end.setMinutes(
+    end.getMinutes() + event.durationMinutes
+  );
 
-  return now >= previous && now <= end;
+  return now >= previous && now < end;
+}
+
+export function getEventEndTime(
+  event: SkyEvent,
+  now: Date
+): Date {
+  const previous = getPreviousEventTime(event, now);
+  const end = new Date(previous);
+
+  end.setMinutes(
+    end.getMinutes() + event.durationMinutes
+  );
+
+  return end;
 }

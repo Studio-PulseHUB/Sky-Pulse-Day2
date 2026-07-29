@@ -1,0 +1,69 @@
+@media (max-width: 768px) {
+  .event-card {
+    min-height: 178px;
+    padding: 14px 12px;
+  }
+
+  .event-card .event-header {
+    align-items: flex-start;
+  }
+
+  .event-card .event-header h2 {
+    font-size: 0.92rem;
+    line-height: 1.2;
+  }
+
+  .event-card .event-type {
+    display: none;
+  }
+
+  .event-card .event-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 0;
+    margin-top: auto;
+  }
+
+  .event-card .next-time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .event-card .mobile-only {
+    display: block;
+    font-size: 0.68rem;
+    line-height: 1;
+    margin-bottom: 4px;
+    color: rgba(255, 255, 255, 0.58);
+  }
+
+  .event-card .event-time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.35rem;
+    line-height: 1;
+    margin: 0 0 14px;
+  }
+
+  .event-card .label {
+    font-size: 0.68rem;
+    line-height: 1;
+    margin: 0 0 5px;
+    color: rgba(255, 255, 255, 0.58);
+  }
+
+  .event-card .countdown {
+    font-size: 1.7rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin: 0;
+  }
+
+  .event-card .progress-track {
+    margin-top: 12px;
+  }
+}

@@ -2,6 +2,8 @@ import type { SkyEvent } from "../../data/events";
 import {
   getEventProgress,
   getNextEventTime,
+  getEventEndTime,
+  isEventActive,
 } from "../../utils/schedule";
 import {
   formatCountdown,
@@ -17,9 +19,16 @@ export default function EventCard({
   event,
   now,
 }: EventCardProps) {
-  const nextTime = getNextEventTime(event, now);
-  const diff = nextTime.getTime() - now.getTime();
-  const progress = getEventProgress(event, now);
+const active = isEventActive(event, now);
+
+const nextTime = getNextEventTime(event, now);
+const endTime = getEventEndTime(event, now);
+
+const diff = active
+  ? endTime.getTime() - now.getTime()
+  : nextTime.getTime() - now.getTime();
+
+const progress = getEventProgress(event, now);
 
   return (
     <div
@@ -50,27 +59,47 @@ export default function EventCard({
 
       <div className="event-info">
         <div className="next-time-block">
-          <p className="label desktop-only">
-            次回開催
-          </p>
+          {active ? (
+  <>
+    <p className="label">
+      開催中
+    </p>
+  </>
+) : (
+  <>
+{active ? (
+  <p className="label">
+    開催中
+  </p>
+) : (
+  <>
+    <p className="label desktop-only">
+      次回開催
+    </p>
 
-          <p className="event-time">
-            <span className="mobile-only">
-              次回{" "}
-            </span>
+    <div className="event-time">
+  <span className="mobile-only">
+    次回
+  </span>
 
-            {formatTime(nextTime)}
-          </p>
+  <span>
+    {formatTime(nextTime)}
+  </span>
+</div>
+  </>
+)}  
+  </>
+)}
         </div>
 
         <div>
-          <p className="label">
-            カウントダウン
-          </p>
+<p className="label">
+  {active ? "終了まで" : "開始まで"}
+</p>
 
-          <p className="countdown">
-            {formatCountdown(diff)}
-          </p>
+<p className="countdown">
+  {formatCountdown(diff)}
+</p>
         </div>
       </div>
 
@@ -82,6 +111,7 @@ export default function EventCard({
             background: event.color,
           }}
         />
+        
       </div>
     </div>
     
