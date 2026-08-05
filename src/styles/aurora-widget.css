@@ -6,3 +6,14 @@
   white-space: nowrap;
   font-size: 2rem;
 }
+
+@media (max-width: 768px) {
+  .mobile-aurora .special-meta {
+    white-space: nowrap;
+  }
+
+  .mobile-aurora .special-meta span {
+    white-space: nowrap;
+    word-break: keep-all;
+  }
+}
