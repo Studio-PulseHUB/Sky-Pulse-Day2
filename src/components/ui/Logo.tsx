@@ -24,10 +24,16 @@ export default function Logo() {
   };
 
   return (
-    <img
-      className={`site-logo site-logo-${theme}`}
-      src={logoMap[theme]}
-      alt="Sky Pulse"
-    />
+    <div className="site-brand">
+      <img
+        className={`site-logo site-logo-${theme}`}
+        src={logoMap[theme]}
+        alt="Sky Pulse"
+      />
+
+      <span className="site-brand-text">
+        Sky Event Dashboard
+      </span>
+    </div>
   );
 }

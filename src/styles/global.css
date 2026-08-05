@@ -1402,3 +1402,34 @@ body:has(.home.time-deepNight) {
   color: rgba(255, 255, 255, 0.72);
 }
 
+.site-brand-text {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .site-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    width: 100%;
+    margin: 18px auto 28px;
+  }
+
+  .site-brand .site-logo {
+    width: 145px;
+    height: auto;
+    margin: 0;
+  }
+
+  .site-brand-text {
+    display: block;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.25;
+    white-space: nowrap;
+    color: currentColor;
+  }
+}
