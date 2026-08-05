@@ -17,3 +17,9 @@
     word-break: keep-all;
   }
 }
+
+@media (max-width: 768px) {
+  .mobile-aurora .special-meta span {
+    font-size: 12px;
+  }
+}
