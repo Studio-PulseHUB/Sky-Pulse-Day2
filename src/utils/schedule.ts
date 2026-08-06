@@ -61,6 +61,16 @@ export function getPreviousEventTime(
     );
   }
 
+  while (
+    previous.getTime() +
+      event.intervalMinutes * 60 * 1000 <=
+    now.getTime()
+  ) {
+    previous.setMinutes(
+      previous.getMinutes() + event.intervalMinutes
+    );
+  }
+
   return previous;
 }
 
