@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import "./WaveTimeline.css";
 
 const phases = [
-  { label: "朝", start: 0, end: 10 },
-  { label: "霧", start: 10, end: 15 },
-  { label: "昼", start: 15, end: 40 },
-  { label: "夕方", start: 40, end: 50 },
-  { label: "夜", start: 50, end: 60 },
+  { label: "朝", en: "Morning", start: 0, end: 10 },
+  { label: "霧", en: "Fog", start: 10, end: 15 },
+  { label: "昼", en: "Day", start: 15, end: 40 },
+  { label: "夕方", en: "Evening", start: 40, end: 50 },
+  { label: "夜", en: "Night", start: 50, end: 60 },
 ];
 
 function formatRemaining(seconds: number) {
@@ -78,27 +78,39 @@ export default function WaveTimeline() {
         })}
 
         {phases.map((phase) => {
-          const x = 40 + (phase.start / 60) * 920;
+  const x = 40 + (phase.start / 60) * 920;
+  const active = currentPhase.label === phase.label;
 
-          return (
-            <text
-              key={phase.label + "-text"}
-              x={x}
-              y1={38}
-              y2={100}
-              textAnchor="middle"
-              fontSize="24"
-              fontWeight="700"
-              fill={
-                currentPhase.label === phase.label
-                  ? "#ffffff"
-                  : "rgba(255,255,255,.45)"
-              }
-            >
-              {phase.label}
-            </text>
-          );
-        })}
+  return (
+    <g key={phase.label}>
+      <text
+        x={x}
+        y={24}
+        textAnchor="middle"
+        fontSize="24"
+        fontWeight="700"
+        fill={
+          active
+            ? "#ffffff"
+            : "rgba(255,255,255,.45)"
+        }
+      >
+        {phase.label}
+      </text>
+
+      <text
+        x={x}
+        y={142}
+        textAnchor="middle"
+        fontSize="12"
+        fontWeight="500"
+        fill="rgba(255,255,255,.45)"
+      >
+        {phase.en}
+      </text>
+    </g>
+  );
+})}
 
         <path
           ref={pathRef}
