@@ -55,7 +55,7 @@ export default function NowCard({
       : "now-card"
   }
 >
-        <p className="now-title">開催中！</p>
+        <p className="now-title">NOW！</p>
 
         <h2 className="now-event-title">
   <span className="now-title-ja">
