@@ -9,8 +9,8 @@ import ControlBar from "../layouts/ControlBar";
 import Logo from "../components/ui/Logo";
 import { getTimeTheme } from "../utils/theme";
 import { useTheme } from "../themes/ThemeProvider";
-
 import { events } from "../data/events";
+
 
 export default function Home() {
   const [now, setNow] = useState(new Date());
@@ -29,48 +29,47 @@ const backgroundClass =
   theme === "auto"
     ? `time-${timeTheme}`
     : "";
-  return (
-    <>
-      <ControlBar />
+return (
+  <>
+    <ControlBar />
 
-<main className={`home ${backgroundClass}`}>
+    <main className={`home ${backgroundClass}`}>
 
-        <Logo />
 
-        <NowCard events={events} now={now} />
+      <Logo />
 
-        <p className="subtitle">Sky Event Dashboard</p>
+      <NowCard events={events} now={now} />
 
-        <div className="cards">
-          {events
-            .filter((event) => event.type !== "fireworks")
-            .map((event) => (
-              <EventCard
-                key={event.id}
-                event={event}
-                now={now}
-              />
-            ))}
+      <p className="subtitle">Sky Event Dashboard</p>
 
-          {/* スマホではカメの横に表示 */}
-          <div className="mobile-aurora">
-            <AuroraWidget />
-          </div>
+      <div className="cards">
+        {events
+          .filter((event) => event.type !== "fireworks")
+          .map((event) => (
+            <EventCard
+              key={event.id}
+              event={event}
+              now={now}
+            />
+          ))}
+
+        {/* スマホではカメの横に表示 */}
+        <div className="mobile-aurora">
+          <AuroraWidget />
         </div>
+      </div>
 
-        <div className="special-events-grid">
-          <FireworksWidget />
+<div className="special-events-grid">
+  <FireworksWidget />
 
-          {/* PCでは花火の横に表示 */}
-          <div className="desktop-aurora">
-            <AuroraWidget />
-          </div>
-        </div>
+  {/* PCでは花火の横に表示 */}
+  <div className="desktop-aurora">
+    <AuroraWidget />
+  </div>
+</div>
 
-        <EnvironmentWidget />
-        
-      </main>
-    </>
-  );
+<EnvironmentWidget />
+    </main>
+  </>
+);
 }
-

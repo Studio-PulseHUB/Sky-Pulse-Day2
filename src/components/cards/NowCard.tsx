@@ -57,9 +57,20 @@ export default function NowCard({
 >
         <p className="now-title">開催中！</p>
 
-        <h2>
-          {activeEvent.icon} {activeEvent.title}
-        </h2>
+        <h2 className="now-event-title">
+  <span className="now-title-ja">
+  <img
+    src={activeEvent.icon}
+    alt=""
+    className="now-event-icon"
+  />
+  {activeEvent.title}
+</span>
+
+  <span className="now-title-en">
+    {activeEvent.englishTitle}
+  </span>
+</h2>
 
         <p className="now-time">
           {formatCountdown(remaining)}
@@ -84,18 +95,30 @@ export default function NowCard({
 
   return (
     <div className="now-card">
-      <p className="now-title">NEXT</p>
+  <p className="now-title">NEXT</p>
 
-      <h2>
-        {nextEvent.event.icon}{" "}
-        {nextEvent.event.title}
-      </h2>
+  <div className="now-mobile-title-wrap">
+  <img
+    src={nextEvent.event.icon}
+    alt=""
+    className="now-event-icon"
+  />
 
-      <p className="now-time">
-        {formatCountdown(
-          nextEvent.time.getTime() - now.getTime()
-        )}
-      </p>
-    </div>
+  <div className="now-title-ja">
+    {nextEvent.event.title}
+  </div>
+
+  <div className="now-title-en">
+    {nextEvent.event.englishTitle}
+  </div>
+</div>
+
+  <p className="now-time">
+    {formatCountdown(
+      nextEvent.time.getTime() - now.getTime()
+    )}
+    </p>
+  </div>
+
   );
 }

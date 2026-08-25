@@ -20,21 +20,31 @@ export default function FireworksWidget() {
       <div className="special-event-info">
 <h2 className="special-title">
   <span className="desktop-title">
-    🎆 花鳥郷花火ショー
+    <img
+      src={fireworks.icon}
+      alt=""
+      className="special-title-icon"
+    />
+    <span>花鳥郷花火ショー / Fireworks</span>
   </span>
 
   <span className="mobile-title">
-    🎆 花火
+    <img
+      src={fireworks.icon}
+      alt=""
+      className="special-title-icon"
+    />
+    <span>花火 / Fireworks</span>
   </span>
 </h2>
 
         <div className="special-meta">
-          <span className="label">次回開催</span>
+          <span className="label">次回開催 / NEXT EVENT</span>
           <strong>{formatEventTime(nextTime, now)}</strong>
         </div>
 
         <div className="special-countdown">
-          {formatLongCountdown(diff)}
+          {formatFireworksCountdown(diff)}
         </div>
       </div>
 
@@ -56,4 +66,22 @@ export default function FireworksWidget() {
       </div>
     </div>
   );
+}
+function formatFireworksCountdown(ms: number) {
+  const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+
+  if (days > 0) {
+    return (
+      <>
+        <span>{days}日 {hours}時間</span>
+        <span className="countdown-en">
+          {days}D {hours}H
+        </span>
+      </>
+    );
+  }
+
+  return formatLongCountdown(ms);
 }

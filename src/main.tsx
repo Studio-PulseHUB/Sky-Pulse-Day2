@@ -5,13 +5,14 @@ import { HashRouter } from "react-router-dom";
 import "./styles/global.css";
 import "./styles/schedule-card.css";
 import "./styles/fireworks-widget.css";
+import "./styles/now-card.css";
 
 import App from "./App";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <HashRouter>
-      <App />
-    </HashRouter>
+      <HashRouter>
+        <App />
+      </HashRouter>
   </StrictMode>
 );

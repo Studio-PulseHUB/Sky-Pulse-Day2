@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTheme } from "../themes/ThemeProvider";
 import "../styles/ControlBar.css";
 
-type MenuName = "theme" | "language" | "obs" | null;
+type MenuName = "theme" | "obs" | null;
 type CopyTarget = string | null;
 
 const obsItems = [
@@ -81,15 +81,6 @@ const copyUrl = async (path: string) => {
         </button>
 
         <button
-          className={`control-icon ${menu === "language" ? "active" : ""}`}
-          type="button"
-          aria-label="言語を開く"
-          onClick={() => setMenu(menu === "language" ? null : "language")}
-        >
-          文
-        </button>
-
-        <button
           className={`control-icon ${menu === "obs" ? "active" : ""}`}
           type="button"
           aria-label="OBSを開く"
@@ -139,14 +130,6 @@ const copyUrl = async (path: string) => {
             >
               Auto
             </button> 
-          </>
-        )}
-
-        {menu === "language" && (
-          <>
-            <h3>Language</h3>
-            <button type="button">日本語 / JST</button>
-            <button type="button">English / PT</button>
           </>
         )}
 

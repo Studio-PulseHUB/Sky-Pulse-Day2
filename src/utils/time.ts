@@ -38,7 +38,7 @@ export function formatLongCountdown(ms: number): string {
   const hours = Math.floor((totalSeconds % 86400) / 3600);
 
   if (days > 0) {
-    return `${days}日 ${hours}時間`;
+  return `${days}日 ${hours}時間 / ${days}D ${hours}H`;
   }
 
   return formatCountdown(ms);

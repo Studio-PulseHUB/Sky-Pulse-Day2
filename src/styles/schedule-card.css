@@ -22,3 +22,18 @@
   grid-column:1 / -1;
   min-height:220px;
 }
+
+.next-label {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .next-label {
+    font-size: 11px;
+    letter-spacing: -0.2px;
+  }
+
+  .event-time {
+    gap: 5px;
+  }
+}

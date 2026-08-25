@@ -1,10 +1,12 @@
 import type { SkyEvent } from "../../data/events";
+
 import {
   getEventProgress,
   getNextEventTime,
   getEventEndTime,
   isEventActive,
 } from "../../utils/schedule";
+
 import {
   formatCountdown,
   formatTime,
@@ -19,16 +21,16 @@ export default function EventCard({
   event,
   now,
 }: EventCardProps) {
-const active = isEventActive(event, now);
+  const active = isEventActive(event, now);
 
-const nextTime = getNextEventTime(event, now);
-const endTime = getEventEndTime(event, now);
+  const nextTime = getNextEventTime(event, now);
+  const endTime = getEventEndTime(event, now);
 
-const diff = active
-  ? endTime.getTime() - now.getTime()
-  : nextTime.getTime() - now.getTime();
+  const diff = active
+    ? endTime.getTime() - now.getTime()
+    : nextTime.getTime() - now.getTime();
 
-const progress = getEventProgress(event, now);
+  const progress = getEventProgress(event, now);
 
   return (
     <div
@@ -40,66 +42,59 @@ const progress = getEventProgress(event, now);
       <div className="event-header">
         <h2>
           <span className="event-icon">
-            {event.icon}
-          </span>
+  <img
+    src={event.icon}
+    alt=""
+    className="event-icon-image"
+  />
+</span>
 
           <span className="desktop-title">
-            {event.title}
+            {event.title} / {event.englishTitle}
           </span>
 
           <span className="mobile-title">
-            {event.shortTitle}
+            {event.shortTitle} / {event.englishShortTitle}
           </span>
         </h2>
-
-        <span className="event-type">
-          {event.type}
-        </span>
       </div>
 
       <div className="event-info">
         <div className="next-time-block">
           {active ? (
-  <>
-    <p className="label">
-      開催中
-    </p>
-  </>
-) : (
-  <>
-{active ? (
-  <p className="label">
-    開催中
-  </p>
-) : (
-  <>
-    <p className="label desktop-only">
-      次回開催
-    </p>
-
-    <div className="event-time">
-  <span className="mobile-only">
-    次回
-  </span>
-
-  <span>
-    {formatTime(nextTime)}
-  </span>
+            <div className="live-label">
+  <span>開催中</span>
+  <span className="live-label-en">LIVE</span>
 </div>
-  </>
-)}  
-  </>
-)}
+          ) : (
+            <>
+              <p className="label desktop-only next-label">
+              次回開催 / NEXT EVENT
+              </p>
+
+              <div className="event-time">
+                <span className="mobile-only next-label">
+                   次回 / NEXT
+                </span>
+
+                <span>
+                  {formatTime(nextTime)}
+                </span>
+              </div>
+            </>
+          )}
         </div>
 
         <div>
-<p className="label">
-  {active ? "終了まで" : "開始まで"}
-</p>
+          <p className="label">
+            {active
+              ? "終了まで / UNTIL END"
+              : "開始まで / UNTIL START"}
+          </p>
 
-<p className="countdown">
-  {formatCountdown(diff)}
-</p>
+          <p className="countdown">
+            {formatCountdown(diff)}
+          </p>
         </div>
       </div>
 
@@ -111,10 +106,7 @@ const progress = getEventProgress(event, now);
             background: event.color,
           }}
         />
-        
       </div>
     </div>
-    
   );
-  
 }
