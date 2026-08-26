@@ -115,3 +115,22 @@
     font-size: 0.88rem;
   }
 }
+
+@media (max-width: 768px) {
+  .fireworks-widget .fireworks-grid {
+    grid-template-columns: repeat(7, 9px);
+    gap: 6px;
+    padding: 8px 0;
+    justify-content: center;
+  }
+
+  .fireworks-widget .firework-dot {
+    width: 9px;
+    height: 9px;
+  }
+
+  .fireworks-widget .special-event-info,
+  .fireworks-widget .special-event-visual {
+    min-width: 0;
+  }
+}

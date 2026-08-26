@@ -57,20 +57,21 @@ export default function NowCard({
 >
         <p className="now-title">NOW！</p>
 
-        <h2 className="now-event-title">
-  <span className="now-title-ja">
+        <div className="now-mobile-title-wrap">
   <img
     src={activeEvent.icon}
     alt=""
     className="now-event-icon"
   />
-  {activeEvent.title}
-</span>
 
-  <span className="now-title-en">
+  <div className="now-title-ja">
+    {activeEvent.title}
+  </div>
+
+  <div className="now-title-en">
     {activeEvent.englishTitle}
-  </span>
-</h2>
+  </div>
+</div>
 
         <p className="now-time">
           {formatCountdown(remaining)}
