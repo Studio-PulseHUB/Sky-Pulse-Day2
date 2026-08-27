@@ -1445,3 +1445,88 @@ body:has(.home.time-deepNight) {
     color: currentColor;
   }
 }
+
+/* 共通ルール */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.home,
+.cards,
+.special-events-grid,
+.event-card,
+.special-event-card,
+.fireworks-widget,
+.environment-widget,
+.aurora-widget {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.cards,
+.special-events-grid {
+  width: 100%;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.special-events-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .home {
+    width: 100%;
+    padding-inline: 16px;
+    overflow-x: hidden;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .special-events-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .event-card,
+  .special-event-card,
+  .fireworks-widget,
+  .environment-widget,
+  .aurora-widget {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+.special-title,
+.event-card h2 {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .special-title {
+    font-size: clamp(0.8rem, 3.8vw, 1rem);
+  }
+
+  .event-card h2 {
+    font-size: clamp(0.8rem, 4vw, 1rem);
+  }
+}

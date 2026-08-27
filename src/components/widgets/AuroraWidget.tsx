@@ -88,7 +88,7 @@ export default function AuroraWidget() {
 
 <div className="special-meta">
   <span>
-    {isLive ? "✦ 開催中" : "次回"}
+    {isLive ? "✦ On Air" : "次回 NEXT"}
   </span>
 
   {!isLive && (
