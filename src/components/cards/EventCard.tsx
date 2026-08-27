@@ -74,7 +74,7 @@ export default function EventCard({
 
               <div className="event-time">
                 <span className="mobile-only next-label">
-                   次回 NEXT / 
+                   NEXT ➡
                 </span>
 
                 <span>

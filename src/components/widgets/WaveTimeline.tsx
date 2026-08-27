@@ -100,7 +100,7 @@ export default function WaveTimeline() {
 
       <text
         x={x}
-        y={142}
+        y={160}
         textAnchor="middle"
         fontSize="12"
         fontWeight="500"
