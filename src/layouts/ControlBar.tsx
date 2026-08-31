@@ -5,8 +5,15 @@ import "../styles/ControlBar.css";
 type MenuName = "theme" | "obs" | null;
 type CopyTarget = string | null;
 
+const themeItems = [
+  { id: "cloud", name: "Cloud" },
+  { id: "night", name: "Night" },
+  { id: "starry", name: "Starry" },
+  { id: "auto", name: "Auto" },
+] as const;
+
 const obsItems = [
-    {
+  {
     name: "Now",
     full: "/obs/now",
     compact: "/obs/now/compact",
@@ -46,25 +53,26 @@ const obsItems = [
 export default function ControlBar() {
   const [menu, setMenu] = useState<MenuName>(null);
   const [copied, setCopied] = useState<CopyTarget>(null);
+
   const { theme, setTheme } = useTheme();
 
-const copyUrl = async (path: string) => {
-  const url =
-    `${window.location.origin}${import.meta.env.BASE_URL}#${path}`;
+  const copyUrl = async (path: string) => {
+    const url =
+      `${window.location.origin}${import.meta.env.BASE_URL}#${path}`;
 
-  try {
-    await navigator.clipboard.writeText(url);
-    setCopied(path);
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(path);
 
-    window.setTimeout(() => {
-      setCopied((current) =>
-        current === path ? null : current
-      );
-    }, 900);
-  } catch {
-    console.error("URLのコピーに失敗しました");
-  }
-};
+      window.setTimeout(() => {
+        setCopied((current) =>
+          current === path ? null : current
+        );
+      }, 900);
+    } catch {
+      console.error("URLのコピーに失敗しました");
+    }
+  };
 
   return (
     <>
@@ -72,19 +80,27 @@ const copyUrl = async (path: string) => {
         <div className="control-logo">✦</div>
 
         <button
-          className={`control-icon ${menu === "theme" ? "active" : ""}`}
+          className={`control-icon ${
+            menu === "theme" ? "active" : ""
+          }`}
           type="button"
           aria-label="テーマを開く"
-          onClick={() => setMenu(menu === "theme" ? null : "theme")}
+          onClick={() =>
+            setMenu(menu === "theme" ? null : "theme")
+          }
         >
           ◐
         </button>
 
         <button
-          className={`control-icon ${menu === "obs" ? "active" : ""}`}
+          className={`control-icon ${
+            menu === "obs" ? "active" : ""
+          }`}
           type="button"
           aria-label="OBSを開く"
-          onClick={() => setMenu(menu === "obs" ? null : "obs")}
+          onClick={() =>
+            setMenu(menu === "obs" ? null : "obs")
+          }
         >
           ◫
         </button>
@@ -96,48 +112,54 @@ const copyUrl = async (path: string) => {
         }`}
       >
         {menu === "theme" && (
-          <>
+          <div className="theme-menu">
+            <p className="menu-eyebrow">
+              APPEARANCE
+            </p>
+
             <h3>Theme</h3>
 
-            <button
-              className={theme === "cloud" ? "active" : ""}
-              type="button"
-              onClick={() => setTheme("cloud")}
-            >
-              Cloud
-            </button>
+            <div className="theme-list">
+              {themeItems.map((item) => (
+                <button
+                  key={item.id}
+                  className={`theme-option ${
+                    theme === item.id ? "active" : ""
+                  }`}
+                  type="button"
+                  onClick={() => setTheme(item.id)}
+                >
+                  <span
+                    className={`theme-orb theme-orb-${item.id}`}
+                    aria-hidden="true"
+                  />
 
-            <button
-              className={theme === "night" ? "active" : ""}
-              type="button"
-              onClick={() => setTheme("night")}
-            >
-              Night
-            </button>
+                  <span className="theme-option-name">
+                    {item.name}
+                  </span>
 
-            <button
-              className={theme === "starry" ? "active" : ""}
-              type="button"
-              onClick={() => setTheme("starry")}
-            >
-              Starry
-            </button>
-
-            <button
-              className={theme === "auto" ? "active" : ""}
-              type="button"
-              onClick={() => setTheme("auto")}
-            >
-              Auto
-            </button> 
-          </>
+                  {theme === item.id && (
+                    <span
+                      className="theme-selected"
+                      aria-hidden="true"
+                    >
+                      ✓
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
         )}
 
         {menu === "obs" && (
           <>
             <div className="obs-menu-header">
               <div>
-                <p className="obs-menu-label">STREAM TOOLS</p>
+                <p className="obs-menu-label">
+                  STREAM TOOLS
+                </p>
+
                 <h3>OBS Overlay</h3>
               </div>
 
@@ -157,30 +179,51 @@ const copyUrl = async (path: string) => {
 
             <div className="obs-menu-list">
               {obsItems.map((item) => (
-                <div className="obs-menu-item" key={item.name}>
-                  <div className="obs-menu-item-name">{item.name}</div>
+                <div
+                  className="obs-menu-item"
+                  key={item.name}
+                >
+                  <div className="obs-menu-item-name">
+                    {item.name}
+                  </div>
 
                   <div className="obs-menu-actions">
                     <button
                       className={`obs-copy-button ${
-                        copied === item.full ? "copied" : ""
+                        copied === item.full
+                          ? "copied"
+                          : ""
                       }`}
                       type="button"
                       onClick={() => copyUrl(item.full)}
                     >
-                      <span className="obs-copy-label">Full</span>
-                      <span className="obs-copy-check">✓</span>
+                      <span className="obs-copy-label">
+                        Full
+                      </span>
+
+                      <span className="obs-copy-check">
+                        ✓
+                      </span>
                     </button>
 
                     <button
                       className={`obs-copy-button ${
-                        copied === item.compact ? "copied" : ""
+                        copied === item.compact
+                          ? "copied"
+                          : ""
                       }`}
                       type="button"
-                      onClick={() => copyUrl(item.compact)}
+                      onClick={() =>
+                        copyUrl(item.compact)
+                      }
                     >
-                      <span className="obs-copy-label">Compact</span>
-                      <span className="obs-copy-check">✓</span>
+                      <span className="obs-copy-label">
+                        Compact
+                      </span>
+
+                      <span className="obs-copy-check">
+                        ✓
+                      </span>
                     </button>
                   </div>
                 </div>

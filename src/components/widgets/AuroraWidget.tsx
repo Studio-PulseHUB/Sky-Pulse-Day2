@@ -115,3 +115,5 @@ export default function AuroraWidget() {
     </div>
   );
 }
+
+/* どうしてこれだけ独立させてしまったのか分からない。自分を殴ろうとしている */

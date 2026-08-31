@@ -1,6 +1,4 @@
-/* ========================================
-   Floating NEXT / NOW
-======================================== */
+/* Floating NEXT / NOW　*/
 
 .floating-now-bar {
   position: fixed;
@@ -77,7 +75,7 @@
 
 
 /* IMPORTANT:
-   他のimgスタイルの影響を受けないよう固定
+   他のimgスタイルの影響を受けないよう固定、絶対優先
 */
 
 .floating-now-bar .floating-now-icon {
@@ -121,9 +119,7 @@
 }
 
 
-/* ========================================
-   Mobile
-======================================== */
+/* Mobile*/
 
 @media (max-width: 760px) {
   .floating-now-bar {
@@ -140,11 +136,7 @@
 
     gap: 10px;
 
-    /*
-      スマホでは画面端から生やさず
-      本物のDynamic Islandの下に
-      独立した黒いIslandとして表示
-    */
+    /*　スマホでは画面端から生やさず本物のDynamic Islandの下に独立した黒いIslandとして表示　*/
     border-radius: 999px;
 
     transform:
