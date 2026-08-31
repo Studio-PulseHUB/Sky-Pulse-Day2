@@ -1,0 +1,183 @@
+/* ========================================
+   Floating NEXT / NOW
+======================================== */
+
+.floating-now-bar {
+  position: fixed;
+
+  top: 0;
+  left: 50%;
+
+  z-index: 1000;
+
+  height: 52px;
+  min-width: 220px;
+
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  background: #000;
+  color: #fff;
+
+  border-radius: 0 0 26px 26px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.22);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transform:
+    translateX(-50%)
+    translateY(-100%)
+    scaleX(0.75);
+
+  transform-origin: top center;
+
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.18s ease;
+}
+
+
+/* 表示 */
+
+.floating-now-bar.visible {
+  opacity: 1;
+
+  transform:
+    translateX(-50%)
+    translateY(0)
+    scaleX(1);
+}
+
+
+/* NEXT / NOW */
+
+.floating-now-status {
+  flex-shrink: 0;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 11px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: 0.12em;
+}
+
+.floating-now-status.now {
+  color: #fff;
+}
+
+
+/* IMPORTANT:
+   他のimgスタイルの影響を受けないよう固定
+*/
+
+.floating-now-bar .floating-now-icon {
+  display: block;
+
+  width: 24px !important;
+  height: 24px !important;
+
+  min-width: 24px;
+  min-height: 24px;
+
+  max-width: 24px !important;
+  max-height: 24px !important;
+
+  flex: 0 0 24px;
+
+  margin: 0;
+  padding: 0;
+
+  object-fit: contain;
+
+  transform: none;
+}
+
+
+/* Countdown */
+
+.floating-now-time {
+  flex-shrink: 0;
+
+  color: #fff;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: -0.02em;
+
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ========================================
+   Mobile
+======================================== */
+
+@media (max-width: 760px) {
+  .floating-now-bar {
+    /*
+      iPhoneのノッチ / Dynamic Island領域の
+      下側へ配置
+    */
+    top: calc(env(safe-area-inset-top, 0px) + 8px);
+
+    height: 46px;
+    min-width: 190px;
+
+    padding: 0 17px;
+
+    gap: 10px;
+
+    /*
+      スマホでは画面端から生やさず
+      本物のDynamic Islandの下に
+      独立した黒いIslandとして表示
+    */
+    border-radius: 999px;
+
+    transform:
+      translateX(-50%)
+      translateY(-12px)
+      scaleX(0.75);
+  }
+
+  .floating-now-bar.visible {
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scaleX(1);
+  }
+
+  .floating-now-bar .floating-now-icon {
+    width: 22px !important;
+    height: 22px !important;
+
+    min-width: 22px;
+    min-height: 22px;
+
+    max-width: 22px !important;
+    max-height: 22px !important;
+
+    flex-basis: 22px;
+  }
+
+  .floating-now-status {
+    font-size: 9px;
+  }
+
+  .floating-now-time {
+    font-size: 14px;
+  }
+}

@@ -1,36 +1,47 @@
 .control-bar {
   position: fixed;
   top: 50%;
-  left: 24px;
+  right: 24px;
+  left: auto;
   transform: translateY(-50%);
 
   width: 72px;
-  padding: 20px 0;
-
+  padding: 18px 0;
   border-radius: 999px;
-  background: #1b212d;
+
+  background: rgba(24, 32, 48, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
 
   z-index: 100;
 }
 
 .control-logo {
-  font-size: 24px;
-  margin-bottom: 8px;
+  font-size: 22px;
+  margin-bottom: 6px;
+  opacity: 0.9;
 }
 
 .control-icon {
   width: 48px;
   height: 48px;
 
-  border: none;
+  border: 1px solid transparent;
   border-radius: 50%;
 
-  background: transparent;
+  background: rgba(255, 255, 255, 0.035);
   color: white;
 
   font-size: 22px;
@@ -38,54 +49,77 @@
 
   transition:
     background 0.25s ease,
-    transform 0.25s ease;
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .control-icon:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
+
+  transform: scale(1.06);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
 .control-icon.active {
-  background: rgba(255, 255, 255, 0.14);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.28);
+
+  box-shadow:
+    0 0 24px rgba(160, 200, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 
 .side-menu {
   position: fixed;
   top: 50%;
-  left: 110px;
 
-  transform: translateY(-50%) scale(0.95);
+  right: 110px;
+  left: auto;
+
+  transform: translateY(-50%) translateX(12px) scale(0.97);
 
   width: 0;
   max-height: calc(100vh - 80px);
 
   opacity: 0;
   overflow: hidden;
-
   padding: 0;
-  border-radius: 24px;
 
-  background: #1b212d;
+  border-radius: 30px;
+
+  background: rgba(24, 32, 48, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  backdrop-filter: blur(32px) saturate(170%);
+  -webkit-backdrop-filter: blur(32px) saturate(170%);
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
 
   transition:
-    width 0.28s ease,
+    width 0.3s ease,
     opacity 0.25s ease,
-    transform 0.28s ease,
-    padding 0.28s ease;
+    transform 0.3s ease,
+    padding 0.3s ease;
 
   z-index: 99;
 }
 
 .side-menu.open {
-  width: 240px;
+  width: 280px;
   padding: 24px;
 
   opacity: 1;
   overflow-y: auto;
 
-  transform: translateY(-50%) scale(1);
+  transform: translateY(-50%) translateX(0) scale(1);
 }
 
 .side-menu.obs-open {
@@ -309,5 +343,314 @@
 
   .side-menu {
     display: none;
+  }
+}
+
+/* Appleリキッドガラス的なUI*/
+
+.menu-eyebrow {
+  margin: 0 0 4px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.theme-menu h3 {
+  margin: 0 0 20px;
+  font-size: 26px;
+}
+
+.theme-list {
+  display: grid;
+  gap: 8px;
+}
+
+.theme-option {
+  position: relative;
+
+  width: 100%;
+  min-height: 62px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 8px 14px;
+
+  border: 1px solid transparent;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.035);
+  color: white;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.theme-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateX(-2px);
+}
+
+.theme-option.active {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+.theme-option-name {
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+.theme-selected {
+  margin-left: auto;
+
+  display: grid;
+  place-items: center;
+
+  width: 24px;
+  height: 24px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+
+  font-size: 12px;
+}
+
+
+/*Liquid Orbsと命名*/
+
+.theme-orb {
+  position: relative;
+
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+
+  overflow: hidden;
+  border-radius: 50%;
+
+  background-size: 300% 300%;
+
+  border: 1px solid rgba(255, 255, 255, 0.32);
+
+  box-shadow:
+    inset 0 1px 5px rgba(255, 255, 255, 0.35),
+    inset 0 -5px 12px rgba(0, 0, 0, 0.16),
+    0 5px 16px rgba(0, 0, 0, 0.18);
+
+  animation:
+    liquid-gradient 9s ease-in-out infinite alternate,
+    liquid-float 6s ease-in-out infinite;
+}
+
+/* ガラス表面の光 */
+
+.theme-orb::before {
+  content: "";
+
+  position: absolute;
+  inset: 3px 7px auto 7px;
+
+  height: 10px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0)
+    );
+
+  filter: blur(2px);
+  opacity: 0.65;
+}
+
+/* 内部を漂う液体？ */
+
+.theme-orb::after {
+  content: "";
+
+  position: absolute;
+
+  width: 46px;
+  height: 46px;
+
+  top: -18px;
+  left: -8px;
+
+  border-radius: 42% 58% 63% 37% / 45% 38% 62% 55%;
+
+  background: rgba(255, 255, 255, 0.16);
+
+  filter: blur(5px);
+
+  animation: liquid-blob 8s ease-in-out infinite alternate;
+}
+
+
+/* Cloud */
+
+.theme-orb-cloud {
+  background-image:
+    radial-gradient(
+      circle at 30% 25%,
+      #ffffff 0%,
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 70% 70%,
+      #9ee7ff 0%,
+      transparent 42%
+    ),
+    linear-gradient(
+      135deg,
+      #eefcff,
+      #8dd8ff,
+      #b8c9ff,
+      #ffffff
+    );
+}
+
+
+/* Night */
+
+.theme-orb-night {
+  background-image:
+    radial-gradient(
+      circle at 65% 25%,
+      #5e77ff 0%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 30% 75%,
+      #18255e 0%,
+      transparent 42%
+    ),
+    linear-gradient(
+      135deg,
+      #060914,
+      #142451,
+      #303e83,
+      #090b1b
+    );
+}
+
+
+/* Starry */
+
+.theme-orb-starry {
+  background-image:
+    radial-gradient(
+      circle at 25% 30%,
+      #ff9eea 0%,
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 72% 65%,
+      #6da9ff 0%,
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      #241550,
+      #6947c7,
+      #327ce7,
+      #d26ee5
+    );
+}
+
+
+/* Auto */
+
+.theme-orb-auto {
+  background-image:
+    radial-gradient(
+      circle at 25% 25%,
+      #d9f7ff 0%,
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 75% 30%,
+      #878cff 0%,
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 50% 80%,
+      #db7ee9 0%,
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      #94dfff,
+      #425ab4,
+      #7d55bb,
+      #f0b8dc
+    );
+}
+
+
+/*アニメーション*/
+
+@keyframes liquid-gradient {
+  0% {
+    background-position: 0% 40%;
+  }
+
+  50% {
+    background-position: 100% 60%;
+  }
+
+  100% {
+    background-position: 20% 100%;
+  }
+}
+
+@keyframes liquid-blob {
+  0% {
+    transform:
+      translate(-4px, -2px)
+      rotate(0deg)
+      scale(0.9);
+  }
+
+  50% {
+    transform:
+      translate(9px, 13px)
+      rotate(120deg)
+      scale(1.15);
+  }
+
+  100% {
+    transform:
+      translate(-2px, 20px)
+      rotate(240deg)
+      scale(0.95);
+  }
+}
+
+@keyframes liquid-float {
+  0%,
+  100% {
+    filter: saturate(1);
+  }
+
+  50% {
+    filter: saturate(1.18);
   }
 }
