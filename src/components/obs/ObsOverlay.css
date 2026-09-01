@@ -10,6 +10,11 @@ body.obs-mode #root {
   background-image: none !important;
 }
 
+
+/* ========================================
+   PAGE
+======================================== */
+
 .obs-page {
   box-sizing: border-box;
 
@@ -17,6 +22,7 @@ body.obs-mode #root {
   height: 100vh;
 
   display: flex;
+
   align-items: flex-start;
   justify-content: flex-start;
 
@@ -27,95 +33,340 @@ body.obs-mode #root {
   background: transparent;
 }
 
-.obs-overlay {
+
+/* ========================================
+   FULL
+======================================== */
+
+.obs-overlay.full {
+  box-sizing: border-box;
+
+  width: 520px;
+
   display: flex;
   flex-direction: column;
-  gap: 10px;
 
-  width: 360px;
-
-  padding: 0;
-
-  border: none;
-  border-radius: 0;
+  color: #fff;
 
   background: transparent;
+
+  border: none;
   box-shadow: none;
-
-  color: #ffffff;
 }
 
-.obs-overlay.compact {
-  width: 300px;
-}
 
-.obs-overlay-header {
+/* ---------- HEADER ---------- */
+
+.obs-full-header {
+  min-width: 0;
+  min-height: 34px;
+
   display: flex;
-  align-items: center;
+
+  align-items: baseline;
+
   gap: 10px;
 
-  min-width: 0;
+  white-space: nowrap;
 }
 
-.obs-overlay-icon {
+
+/* NEXT / NOW */
+
+.obs-full-status {
   flex: 0 0 auto;
 
-  font-size: 28px;
-  line-height: 1;
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+
+  opacity: 0.72;
+
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.8);
 }
 
-.obs-overlay-title {
-  overflow: hidden;
+
+/* 日本語タイトル */
+
+.obs-full-title {
+  flex: 0 0 auto;
 
   font-size: 24px;
-  font-weight: 750;
-  line-height: 1.2;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  text-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.9),
-    0 0 12px rgba(0, 0, 0, 0.65);
-}
-
-.obs-overlay-countdown {
-  font-variant-numeric: tabular-nums;
-
-  font-size: 46px;
   font-weight: 800;
+
   line-height: 1;
 
-  letter-spacing: 0.03em;
-
   text-shadow:
-    0 3px 6px rgba(0, 0, 0, 0.95),
-    0 0 14px rgba(0, 0, 0, 0.7);
+    0 2px 6px rgba(0, 0, 0, 0.85),
+    0 0 12px rgba(0, 0, 0, 0.45);
 }
 
-.obs-overlay.compact .obs-overlay-countdown {
-  font-size: 42px;
-}
 
-.obs-overlay-progress {
-  width: 100%;
-  height: 10px;
+/* 英語タイトル */
+
+.obs-full-title-en {
+  min-width: 0;
 
   overflow: hidden;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  opacity: 0.58;
+
+  text-overflow: ellipsis;
+
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+
+/* ---------- DIVIDER ---------- */
+
+.obs-full-divider {
+  width: 100%;
+  height: 2px;
+
+  margin-top: 7px;
+  margin-bottom: 12px;
 
   border-radius: 999px;
 
-  background: rgba(255, 255, 255, 0.22);
+  opacity: 0.9;
 
   box-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.7),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    0 0 10px rgba(255, 255, 255, 0.15);
 }
 
-.obs-overlay-progress-fill {
-  height: 100%;
 
-  border-radius: inherit;
+/* ---------- INFO ---------- */
 
-  transition: width 0.8s linear;
+.obs-full-info {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 28px;
+}
+
+
+.obs-full-info-block {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+/* next / countdown */
+
+.obs-full-label {
+  font-size: 10px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: 0.08em;
+
+  text-transform: lowercase;
+
+  opacity: 0.48;
+
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+
+/* 16:00 */
+
+.obs-full-value {
+  font-size: 24px;
+  font-weight: 750;
+
+  line-height: 1;
+
+  font-variant-numeric: tabular-nums;
+
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+
+/* ---------- COUNTDOWN ---------- */
+
+.obs-full-countdown-area {
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 14px;
+}
+
+
+.obs-full-countdown-block {
+  align-items: flex-end;
+}
+
+
+.obs-full-countdown {
+  font-size: 31px;
+  font-weight: 850;
+
+  line-height: 0.95;
+
+  letter-spacing: 0.025em;
+
+  font-variant-numeric: tabular-nums;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 3px 7px rgba(0, 0, 0, 0.95),
+    0 0 14px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ========================================
+   COUNTDOWN RING
+======================================== */
+
+.obs-countdown-ring {
+  width: 40px;
+  height: 40px;
+
+  flex: 0 0 40px;
+
+  overflow: visible;
+
+  transform: rotate(-90deg);
+
+  filter:
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
+}
+
+
+.obs-countdown-ring circle {
+  fill: none;
+
+  stroke-width: 3;
+
+  vector-effect: non-scaling-stroke;
+}
+
+
+.obs-countdown-ring-bg {
+  stroke: rgba(255, 255, 255, 0.15);
+}
+
+
+.obs-countdown-ring-value {
+  stroke-linecap: round;
+
+  transition:
+    stroke-dashoffset 1s linear;
+}
+
+
+/* ========================================
+   COMPACT
+======================================== */
+
+.obs-page-compact {
+  padding: 18px;
+}
+
+
+.obs-overlay.compact {
+  box-sizing: border-box;
+
+  width: 180px;
+  height: 180px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 16px;
+
+  color: #fff;
+
+  background:
+    rgba(18, 22, 30, 0.9);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 30px;
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+
+/* ---------- COMPACT ICON ---------- */
+
+.obs-overlay.compact .obs-compact-icon {
+  display: block;
+
+  width: 100px !important;
+  height: 100px !important;
+
+  min-width: 100px;
+  min-height: 100px;
+
+  max-width: 100px !important;
+  max-height: 100px !important;
+
+  flex: 0 0 100px;
+
+  margin: 0;
+
+  object-fit: contain;
+}
+
+
+.obs-compact-emoji {
+  display: flex;
+
+  width: 100px;
+  height: 100px;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 76px;
+
+  line-height: 1;
+}
+
+
+/* ---------- COMPACT TIME ---------- */
+
+.obs-compact-countdown {
+  color: #fff;
+
+  font-size: 24px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: 0.02em;
+
+  font-variant-numeric: tabular-nums;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.8);
 }

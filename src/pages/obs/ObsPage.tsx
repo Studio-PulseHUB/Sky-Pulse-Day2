@@ -94,15 +94,23 @@ function TimedEventOverlay({
   }
 
   return (
-    <ObsOverlay
-      title={event.title}
-      icon={event.icon}
-      color={event.color}
-      countdown={countdown}
-      progress={progress}
-      compact={compact}
-    />
-  );
+  <ObsOverlay
+    title={event.title}
+    englishTitle={event.englishTitle}
+    icon={event.icon}
+    color={event.color}
+    countdown={countdown}
+    eventTime={targetTime.toLocaleTimeString(
+      "ja-JP",
+      {
+        hour: "2-digit",
+        minute: "2-digit",
+      }
+    )}
+    progress={progress}
+    compact={compact}
+  />
+);
 }
 
 function AuroraOverlay({ compact }: { compact: boolean }) {
