@@ -74,9 +74,7 @@
 }
 
 
-/* IMPORTANT:
-   他のimgスタイルの影響を受けないよう固定、絶対優先
-*/
+/* IMPORTANT:他のimgスタイルの影響を受けないよう固定、絶対優*/
 
 .floating-now-bar .floating-now-icon {
   display: block;
@@ -123,10 +121,7 @@
 
 @media (max-width: 760px) {
   .floating-now-bar {
-    /*
-      iPhoneのノッチ / Dynamic Island領域の
-      下側へ配置
-    */
+    /*iPhoneのノッチ / Dynamic Island領域の下側へ配置*/
     top: calc(env(safe-area-inset-top, 0px) + 8px);
 
     height: 46px;

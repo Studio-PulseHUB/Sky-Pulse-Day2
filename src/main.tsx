@@ -16,3 +16,8 @@ createRoot(document.getElementById("root")!).render(
       </HashRouter>
   </StrictMode>
 );
+
+  /*
+  人のソースコードを見るなよ、照れるから
+  Stop looking at the source code, I'll get embarrassed 
+  */

@@ -504,9 +504,7 @@ body {
   color: #ffffff;
 }
 
-/* =========================
-   THEME COLORS
-========================= */
+/*THEME COLORS*/
 
 [data-theme="cloud"] {
   --page-bg: #edf0f4;
@@ -547,9 +545,7 @@ body {
   --blob-c: rgba(220, 204, 255, 0.9);
 }
 
-/* =========================
-   FLUID BACKGROUND
-========================= */
+/*FLUID BACKGROUND*/
 
 html,
 body,
@@ -674,9 +670,7 @@ body::after {
 
 }
 
-/* =========================
-   SHARED CARDS
-========================= */
+/*SHARED CARDS*/
 
 .now-card,
 .event-card,
@@ -867,9 +861,7 @@ body::after {
   display: block;
 }
 
-/* =========================
-   OBSモード
-========================= */
+/*OBSモード*/
 
 .obs-page {
   width: 100vw; 
